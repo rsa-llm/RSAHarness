@@ -1,0 +1,32 @@
+[project]
+name = "rsa-harness"
+description = "RSAHarness: Inference harness for Recursive Self-Aggregation (RSA)"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+]
+
+[project.optional-dependencies]
+vllm = ["vllm", "transformers", "torch"]
+anthropic = ["anthropic"]
+openai = ["openai"]
+gemini = ["google-genai"]
+eval = ["verifiers>=0.1.9.post3"]
+math-eval = ["datasets"]
+all = ["vllm", "transformers", "torch", "anthropic", "openai", "google-genai", "verifiers>=0.1.9.post3", "datasets"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = [
+    "/rsa/*.py",
+    "/rsa/adapters/*.py",
+    "/pyproject.toml",
+    "/README.md",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
